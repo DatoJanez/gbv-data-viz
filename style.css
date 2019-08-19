@@ -188,3 +188,10 @@ height: 5vh;
       border-top-color: transparent;
   border-top-color: gray;
 }
+
+
+h1 {
+  font-size: 24px !important;
+  padding: 18px;
+  color: gray !important;
+}

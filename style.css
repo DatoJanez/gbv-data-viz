@@ -117,7 +117,7 @@ height: 5vh;
 
 .defs {
   position: absolute;
-  bottom: 20px;
+  top: 20px;
 }
 
 .defs > div {
@@ -127,33 +127,42 @@ height: 5vh;
   font-size: 14px;
   margin-top: 8px;
   position: relative;
+  opacity: .4;
+  cursor: pointer;
 }
 
-
-
-.defs > div.reg, .defs > div.clear, .defs > div.ord, .defs > div.diamond{
+.defs > div:hover, .defs > div[active="true"]:hover {
+  opacity: .6;
+}
+.defs > div[active="true"] {
+  opacity: 1;
+}
+.defs > div.Percentage{
+  border-left-color: #2a2a2a; 
+}
+.defs > div.Cleared, .defs > div.Registred, .defs > div.Order, .defs > div.Call{
   border-left:none;
   padding-left: 30px;
 }
-.reg::before, .clear::before, .ord::before{
+.Cleared::before, .Registred::before, .Order::before{
   position: absolute;
   content:'';
 }
 
-.reg::before{
+.Cleared::before{
   width: 20px;
   height: 20px;
   background: gray;
   left: 0;
 }
-.clear::before{
+.Registred::before{
   border-radius: 50%;
   width: 20px;
   height: 20px;
   background: gray;
   left: 0;
 }
-.ord::before{
+.Order::before{
   width: 0; 
   height: 0; 
   border-left: 10px solid transparent;
@@ -167,7 +176,7 @@ height: 5vh;
 }
 
 
-.diamond i{
+.Call i{
   width: 0;
   height: 0;
   border: 10px solid transparent;
@@ -177,7 +186,7 @@ height: 5vh;
   top: -10px;
   left: 0;
 }
-.diamond i:after {
+.Call i:after {
   content: '';
   position: absolute;
   left: -10px;
@@ -189,9 +198,12 @@ height: 5vh;
   border-top-color: gray;
 }
 
-
 h1 {
-  font-size: 24px !important;
-  padding: 18px;
+  position: absolute;
+  font-size: 14px !important;
   color: gray !important;
+  bottom: 20px;
+  width: 70%;
+  padding: 0;
 }
+

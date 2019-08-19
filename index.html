@@ -18,28 +18,30 @@
     <div id="chart"></div>
 
     <div class="left-bar">
-        <h1>Gender Based Violence Data Visualization</h1>
+        <img src="UNDP logo jpg.jpg" style="width: 50px;position: absolute;right: 18px;bottom: 26px;"/>
+        <h1>GBV Data Visualization</h1>
         <form>
 
         </form>
         <div class="defs">
-            <div style="border-left-color:#16a085" >Tbilisi</div>
-            <div style="border-left-color:#c0392b" >Kvemo Kartli</div>
-            <div style="border-left-color:#2980b9" >Shida Kartli</div>
-            <div style="border-left-color:#8e44ad" >Mtskheta-Mtianeti</div>
-            <div style="border-left-color:#2c3e50" >Kakheti</div>
-            <div style="border-left-color:#f39c12" >Samtskhe-Javakheti</div>
-            <div style="border-left-color:#d35400" >Imereti Racha-Lechkhumi Kvemo Svaneti</div>
-            <div style="border-left-color:#c0392b" >Samegrelo-Zemo Svaneti</div>
-            <div style="border-left-color:#4d05e8" >Guria</div>
-            <div style="border-left-color:#192a56" >Adjara</div>
+            <div active="true" onClick="toggleRegion('Tbilisi')" style="border-left-color:#16a085" class="Tbilisi">Tbilisi</div>
+            <div active="true" onClick="toggleRegion('Kvemo Kartli')" style="border-left-color:#c0392b" class="Kvemo Kartli">Kvemo Kartli</div>
+            <div active="true" onClick="toggleRegion('Shida Kartli')" style="border-left-color:#2980b9" class="Shida Kartli">Shida Kartli</div>
+            <div active="true" onClick="toggleRegion('Mtskheta-Mtianeti')" style="border-left-color:#8e44ad" class="Mtskheta-Mtianeti">Mtskheta-Mtianeti</div>
+            <div active="true" onClick="toggleRegion('Kakheti')" style="border-left-color:#2c3e50" class="Kakheti">Kakheti</div>
+            <div active="true" onClick="toggleRegion('Samtskhe-Javakheti')" style="border-left-color:#f39c12" class="Samtskhe-Javakheti">Samtskhe-Javakheti</div>
+            <div active="true" onClick="toggleRegion('Imereti Racha-Lechkhumi Kvemo Svaneti')" style="border-left-color:#d35400" class="Imereti Racha-Lechkhumi Kvemo Svaneti">Imereti Racha-Lechkhumi Kvemo Svaneti</div>
+            <div active="true" onClick="toggleRegion('Samegrelo-Zemo Svaneti')" style="border-left-color:#c0392b" class="Samegrelo-Zemo Svaneti">Samegrelo-Zemo Svaneti</div>
+            <div active="true" onClick="toggleRegion('Guria')" style="border-left-color:#4d05e8" class="Guria">Guria</div>
+            <div active="true" onClick="toggleRegion('Adjara')" style="border-left-color:#192a56" class="Adjara">Adjara</div>
             <br/>
-            <div class="clear" >Registred</div>
-            <div class="reg" >Cleared</div>
-            <div class="ord" >Orders</div>
-            <div class="diamond" ><i></i>Calls</div>
+            <div active="true" onClick="toggleType('Registred')" class="Registred" >Registred</div>
+            <div active="true" onClick="toggleType('Cleared')" class="Cleared" >Cleared</div>
+            <div active="true" onClick="toggleType('Order')" class="Order" >Orders</div>
+            <div active="true" onClick="toggleType('Call')" class="Call" ><i></i>Calls</div>
             <br/>
-            <img src="UNDP logo jpg.jpg" style="width: 50px; position: absolute; right: 0;  bottom: 16px;"/>
+            <div active="true" onClick="togglePercentage()" class="Percentage">Per 1000 citizens</div>
+            <br/>
         </div>
     </div>
     

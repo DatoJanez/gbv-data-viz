@@ -255,21 +255,35 @@ d3.csv('./combined.csv')
         drow(csv.map(mapToChartData))
     })
 
+var regions = ['Tbilisi','Kvemo Kartli','Shida Kartli','Mtskheta-Mtianeti','Kakheti','Samtskhe-Javakheti','Imereti Racha-Lechkhumi Kvemo Svaneti','Samegrelo-Zemo Svaneti','Guria','Adjara',]
+var types = ['Registred', 'Cleared', 'Order', 'Call']
 
 const buildDropdowns = () => {
-    var regions = ['Tbilisi','Kvemo Kartli','Shida Kartli','Mtskheta-Mtianeti','Kakheti','Samtskhe-Javakheti','Imereti Racha-Lechkhumi Kvemo Svaneti','Samegrelo-Zemo Svaneti','Guria','Adjara',]
-    var types = ['Registred', 'Cleared', 'Order', 'Call']
     drowDropdown('Region', regions)
     drowDropdown('Type', types)
-    
-    
 }
+// pop X = 100 val 
+// val x
+
+const pop = {
+    'Tbilisi': 1114000,
+    'Kvemo Kartli': 423986,
+    'Shida Kartli': 300382,
+    'Mtskheta-Mtianeti': 94336,
+    'Kakheti': 319144,
+    'Samtskhe-Javakheti': 160262,
+    'Imereti Racha-Lechkhumi Kvemo Svaneti': 567979,
+    'Samegrelo-Zemo Svaneti': 331145,
+    'Guria': 113000,
+    'Adjara': 336077,
+}
+
+
 
 const mapToChartData = row => { 
     row.values = []
     for(var i = 1; i <= 54; i++){
-        row.values.push(+row[i])
-        // delete row[i]
+        row.values.push(per1000 ? ((+row[i]))/  (pop[row.Region] / 1000) : (+row[i]))
     }
     return row//.values
 }
@@ -277,34 +291,56 @@ const mapToChartData = row => {
 var drowDropdowns = []
 
 const drowDropdown = (col, options) => {
+    drowDropdowns[col] = [] //JSON.parse(JSON.stringify(options))
+}
 
-    var form = document.getElementsByTagName('form')[0]
 
-    var select= document.createElement('select')
-    
-    select.setAttribute("multiple", "multiple")
-    
-    // console.log(select)
-    form.appendChild(select)
-    
-    options.forEach(opt => {
-        var option = document.createElement('option')    
-        option.setAttribute("value", opt)
-        option.innerHTML = opt
-        select.appendChild(option)
+const toggleRegion = value => {
+    if(drowDropdowns['Region'].indexOf(value) === -1){
+        drowDropdowns['Region'].push(value)
+    } else {
+        drowDropdowns['Region'] = drowDropdowns['Region'].filter(s => s !== value)
+    }
+
+    regions.forEach(f => {
+        document.getElementsByClassName(f)[0].setAttribute('active', (drowDropdowns['Region'].length && drowDropdowns['Region'].indexOf(f) === -1 ? "false" : "true"))
     })
     
-
-    $(select).multiselect({includeSelectAllOption: false, nonSelectedText: col, enableFiltering: false , enableClickableOptGroups: true});
-
-    $(select).on('change', filter)
-    drowDropdowns[col] = select;
+    filter()
 }
+
+const toggleType = value => {
+    if(drowDropdowns['Type'].indexOf(value) === -1){
+        drowDropdowns['Type'].push(value)
+    } else {
+        drowDropdowns['Type'] = drowDropdowns['Type'].filter(s => s !== value)
+    }
+
+    types.forEach(f => {
+        document.getElementsByClassName(f)[0].setAttribute('active', (drowDropdowns['Type'].length && drowDropdowns['Type'].indexOf(f) === -1 ? "false" : "true"))
+    })
+    
+    filter()
+}
+
+per1000 = true;
+
+const togglePercentage = () => {
+    per1000 = !per1000
+    document.getElementsByClassName("Percentage")[0].setAttribute('active', per1000 ? "true" : "false")
+    filter()
+}
+
 
 const filter = () => {
     drow(Object.keys(drowDropdowns)
         .reduce((globalDataReduced,drowDropdownName) => 
-            globalDataReduced.filter(row => !$(drowDropdowns[drowDropdownName]).val() || $(drowDropdowns[drowDropdownName]).val().indexOf(row[drowDropdownName]) !== -1)
+            globalDataReduced.filter(row => !drowDropdowns[drowDropdownName].length || drowDropdowns[drowDropdownName].indexOf(row[drowDropdownName]) !== -1)
         , globalData)
         .map(mapToChartData))
 }
+
+
+
+
+

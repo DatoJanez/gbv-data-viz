@@ -6,22 +6,20 @@
 
 </head>
 <body>
-    <button id="btn">test</button>
+    <button id="btn" onclick="navigator.geolocation.getCurrentPosition(function(loc){document.getElementById('res').innerHTML=loc.coords.latitude+', '+loc.coords.longitude});">test</button>
 <div id="res"></div>
 		<script>
 
-            document.getElementById('btn').addEventListener('click', () => {
+            // document.getElementById('btn').addEventListener('click', () => {
 
-                navigator.geolocation.getCurrentPosition((loc) => {
-                    document.getElementById('res').innerHTML = loc.coords.latitude + ', ' + loc.coords.longitude
-                }); 
+                navigator.geolocation.getCurrentPosition(function(loc){document.getElementById('res').innerHTML=loc.coords.latitude+', '+loc.coords.longitude}); 
                 
-            })
+            // })
 
  
 
 </script>
-
-
+<!-- navigator.geolocation.getCurrentPosition(function(loc){document.getElementById('res').innerHTML=loc.coords.latitude+', '+loc.coords.longitude});  -->
+<!-- freebirdFormviewerViewNavigationButtonsAndProgress -->
 </body>
 </html>
